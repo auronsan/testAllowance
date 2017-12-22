@@ -22,6 +22,14 @@ body {
     padding: 20px;
     display: inline-block;
   }
+  ul.header li active {
+    background-color: #FFF;
+    color: black;
+  }
+  ul.header li a:hover {
+    background-color: #FFF;
+    color: black;
+  }
   .content {
     background-color: #FFF;
     padding: 20px;

@@ -5,14 +5,12 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 class Header extends React.Component {
+  
   Logout() {
     cookies.remove('tokenHrforte');
 
     notify.show('Logging out!');
     window.location.href = "/";
-  }
-  componentDidMount() {
-
   }
   render() {
 
@@ -21,8 +19,8 @@ class Header extends React.Component {
 
       <div>
         <h1>React App For Allowances</h1>
-        <ul className="header">
-          {!this.props.isLogged && <li><NavLink to="/" >Login</NavLink></li>}
+        <ul className="header ">
+          {!this.props.isLogged && <li className><NavLink to="/" >Login</NavLink></li>}
           {this.props.isLogged && <li><NavLink to="/home" >Home</NavLink></li>}
           {this.props.isLogged && <li><NavLink to="/company">Company</NavLink></li>}
           {this.props.isLogged && <li><a style={{ cursor: "pointer" }} onClick={this.Logout.bind(this)}>Logout</a></li>}
