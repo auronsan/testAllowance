@@ -5,7 +5,10 @@ import Header from "./Header";
 import Home from "./Home";
 import Company from "./Company";
 import GetAllowance from "./GetAllowance";
-import Notifications from 'react-notify-toast';
+import UpdateAllowance from "./UpdateAllowance";
+
+import AddNewAllowance from "./AddNewAllowance";
+import DetailAllowance from "./DetailAllowance";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 class Main extends Component {
@@ -18,6 +21,7 @@ class Main extends Component {
   }
 
   componentDidMount() {
+    
     if (cookies.get('tokenHrforte')) {
       window.location.href = "#home";
       this.setState({ isLogged: true });
@@ -43,13 +47,15 @@ class Main extends Component {
       <HashRouter>
 
         <div>
-          <Notifications />
           <Header isLogged={this.state.isLogged} />
           <div className="content">
             <Route exact path="/" render={() => <Login setLogged={this.setStateLogged.bind(this)} />} />
             {this.state.isLogged && <Route path="/home" component={Home} />}
             {this.state.isLogged && <Route path="/company" component={Company} />}
-            {this.state.isLogged && <Route path="/:id/getAllowance" component={GetAllowance} />}
+            {this.state.isLogged && <Route path="/:company_id/getAllowance" component={GetAllowance} />}
+            {this.state.isLogged && <Route path="/:company_id/updateAllowance/:id/" component={UpdateAllowance} />}
+            {this.state.isLogged && <Route path="/:company_id/addAllowance/" component={AddNewAllowance} />}
+            {this.state.isLogged && <Route path="/:company_id/detailAllowance/:id/" component={DetailAllowance} />}
           </div>
         </div>
       </HashRouter>

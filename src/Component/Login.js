@@ -2,15 +2,15 @@
 import React from "react";
 import Cookies from 'universal-cookie';
 import $ from 'jquery';
-import { notify } from 'react-notify-toast';
 const cookies = new Cookies();
 
+const Materialize = window.Materialize;
 class Login extends React.Component {
 
   onLogin(e) {
     e.preventDefault();
     if ($("#email").val() === "" || $("#password").val() === "") {
-      notify.show('Please Input email & Password');
+      Materialize.toast('Please Input email & Password', 4000)
     } else {
       $.ajax({
         url: 'https://zoe.hrforte.com/v1/Account/token',
@@ -27,13 +27,13 @@ class Login extends React.Component {
             cookies.set('tokenHrforte', response.token, {
               expires: date
             });
-            notify.show('Logged in');
+            Materialize.toast('Logged in', 4000);
             this.props.setLogged();
             window.location.href = "../#home";
           }
         },
         error: (e) => {
-          notify.show('Email / Password not exist');
+          Materialize.toast('Email / Password not exist', 4000);
         }
 
       });
@@ -60,7 +60,7 @@ class Login extends React.Component {
               <label htmlFor="password" data-error="wrong" data-success="right" required>Password</label>
 
             </div>
-            <button type="submit" className="waves-effect waves-light btn"><i class="material-icons right">vpn_key</i>Login</button>
+            <button type="submit" className="waves-effect waves-light btn"><i className="material-icons right">vpn_key</i>Login</button>
           </div>
         </form>
       </div>

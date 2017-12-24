@@ -41,3 +41,24 @@ body {
   .content li {
     margin-bottom: 10px;
   }
+  .actionButton{
+    margin-right: 20px;
+  }
+  .actionButton:hover{
+    color: black;
+  }
+  
+  html{
+    margin:0px !important;
+    padding: 0px !important;
+  }
+  body{
+    margin:0px !important;
+    padding-right: 0px !important;
+  }
+  .swal2-container{
+    overflow-y: auto !important;
+  }
+  .swal2-shown{
+    overflow-y: auto !important;
+  }
