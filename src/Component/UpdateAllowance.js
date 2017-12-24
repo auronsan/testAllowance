@@ -2,14 +2,13 @@ import React from "react";
 
 import $ from 'jquery';
 import Cookies from 'universal-cookie';
-
 const Materialize = window.Materialize;
 const cookies = new Cookies();
+const token = cookies.get('tokenHrforte');
 class UpdateAllowance extends React.Component {
     
     componentDidMount() {
         
-        var token = cookies.get('tokenHrforte');
         $("#updateid").val(this.props.match.params.id);
         $.ajax({
             url: 'https://zoe.hrforte.com/v1/AllowanceTypes/' + this.props.match.params.company_id + '/' + this.props.match.params.id,
@@ -26,7 +25,6 @@ class UpdateAllowance extends React.Component {
         });
     }
     update() {
-        var token = cookies.get('tokenHrforte');
         $.ajax({
             url: 'https://zoe.hrforte.com/v1/AllowanceTypes/' + this.props.match.params.company_id,
             beforeSend: (xhr) => {

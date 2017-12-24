@@ -17,7 +17,7 @@ class Company extends React.Component {
         <tr>
           <td>1</td>
           <td>Test Company</td>
-          <td><NavLink to="/1/getAllowance" >Look Allowance</NavLink></td>
+             <td><NavLink to="/1/getAllowance" >Look Allowance</NavLink></td>
         </tr>
       </tbody>
     </table>

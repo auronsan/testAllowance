@@ -3,23 +3,23 @@ import React from "react";
 import $ from 'jquery';
 import Cookies from 'universal-cookie';
 
-const Materialize = window.Materialize;
 const cookies = new Cookies();
+const token = cookies.get('tokenHrforte');
+const Materialize = window.Materialize;
 class AddNewAllowance extends React.Component {
-   
+
     componentDidMount() {
-        
-      
+
+
     }
     addnew() {
-        var token = cookies.get('tokenHrforte');
         $.ajax({
             url: 'https://zoe.hrforte.com/v1/AllowanceTypes/' + this.props.match.params.company_id,
             beforeSend: (xhr) => {
                 xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-            }, 
+            },
             data: JSON.stringify({
-                id:  0,
+                id: 0,
                 code: $("#addnewcode").val(),
                 name: $("#addnewname").val(),
                 taxable: true
@@ -28,10 +28,13 @@ class AddNewAllowance extends React.Component {
             dataType: "json",
             type: 'POST',
             success: (response) => {
-                Materialize.toast('Success Insert', 4000);
-                this.props.history.push("/"+this.props.match.params.company_id+"/getAllowance");
+                Materialize.toast('Insert Successfull', 4000);
+                this.props.history.push("/" + this.props.match.params.company_id + "/getAllowance");
+            },
+            error: (e) => {
+                Materialize.toast(e.responseJSON.developerMessage, 4000);
             }
-        });
+            });
     }
     render() {
         return (

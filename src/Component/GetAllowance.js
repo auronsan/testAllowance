@@ -1,13 +1,12 @@
 import React from "react";
-
 import $ from 'jquery';
 import { NavLink } from "react-router-dom";
 import Cookies from 'universal-cookie';
-
+const Materialize = window.Materialize;
 const swal = window.swal;
 const cookies = new Cookies();
+const token = cookies.get('tokenHrforte');
 
-const Materialize = window.Materialize;
 class GetAllowance extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +18,6 @@ class GetAllowance extends React.Component {
   }
   componentDidMount() {
 
-    var token = cookies.get('tokenHrforte');
     $.ajax({
       url: 'https://zoe.hrforte.com/v1/AllowanceTypes/' + this.props.match.params.company_id + '/page?pg=1',
       beforeSend: (xhr) => {
@@ -32,9 +30,6 @@ class GetAllowance extends React.Component {
     });
   }
   delete(allowance_id) {
-
-    var token = cookies.get('tokenHrforte');
-
     var deletedId = [allowance_id];
     swal({
       title: 'Are you sure?',
@@ -77,9 +72,6 @@ class GetAllowance extends React.Component {
     })
   }
   deleteAll() {
-
-
-    var token = cookies.get('tokenHrforte');
     var checkbox = $("#table_allowance input:checkbox:checked");
     var isExist = false;
     var deletedId = [];
@@ -132,15 +124,15 @@ class GetAllowance extends React.Component {
         }
       });
       isExist = false;
-    }else{
+    } else {
       Materialize.toast('Not Selected Item', 4000);
     }
   }
   render() {
     return (
       <div>
-<NavLink className="actionButton waves-effect btn" to={"/" + this.props.match.params.company_id + "/addAllowance/"} >Add New</NavLink>
-<button className="actionButton waves-effect btn" onClick={this.deleteAll.bind(this)} >Delete Selected</button>
+        <NavLink className="actionButton waves-effect btn" to={"/" + this.props.match.params.company_id + "/addAllowance/"} >Add New</NavLink>
+        <button className="actionButton waves-effect btn" onClick={this.deleteAll.bind(this)} >Delete Selected</button>
         <table className="highlight responsive-table" id="table_allowance">
           <thead>
             <tr>
@@ -160,14 +152,14 @@ class GetAllowance extends React.Component {
                 <td>{item.id}</td>
                 <td>{item.code}</td>
                 <td>{item.name}</td>
-                <td><NavLink className="actionButton" to={"/" + this.props.match.params.company_id + "/updateAllowance/" + item.id} >Update</NavLink><NavLink className="actionButton" to={"/" + this.props.match.params.company_id + "/detailAllowance/" +item.id} >Detail</NavLink><a className="actionButton" onClick={this.delete.bind(this, item.id)} >Delete</a></td>
+                <td><NavLink className="actionButton" to={"/" + this.props.match.params.company_id + "/updateAllowance/" + item.id} >Update</NavLink><NavLink className="actionButton" to={"/" + this.props.match.params.company_id + "/detailAllowance/" + item.id} >Detail</NavLink><a className="actionButton" onClick={this.delete.bind(this, item.id)} >Delete</a></td>
               </tr>
             })}
 
 
           </tbody>
         </table>
-       
+
         <ul className="pagination">
           {[...Array(this.state.pages)].map((x, i) => {
             if (i + 1 === this.state.page) {

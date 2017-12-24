@@ -4,11 +4,11 @@ import $ from 'jquery';
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
+const token = cookies.get('tokenHrforte');
 class DetailAllowance extends React.Component {
-   
+
     componentDidMount() {
 
-        var token = cookies.get('tokenHrforte');
         $("#updateid").val(this.props.match.params.id);
         $.ajax({
             url: 'https://zoe.hrforte.com/v1/AllowanceTypes/' + this.props.match.params.company_id + '/' + this.props.match.params.id,
@@ -33,7 +33,7 @@ class DetailAllowance extends React.Component {
                 <table className="highlight responsive-table" id="table_allowance">
 
                     <tbody>
-                        <tr><td> Code :</td><td  id="detailcode">Loading..</td>
+                        <tr><td> Code :</td><td id="detailcode">Loading..</td>
                         </tr>
                         <tr><td> Name :</td><td id="detailname">Loading..</td>
                         </tr>
