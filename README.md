@@ -6,9 +6,10 @@ The purpose of this app is to finish a task.
 To Use need to do this following steps:
 1) Node.js(Download and Install https://nodejs.org/en/download/ Depend on your OS Windows/MACOS)
 2) Install Git(Download and install https://git-scm.com/downloads Depend on your OS Windows/MACOS)
-3) Clone this project with git 
+3) Clone this project with git and change to the directory
 ```
 git clone https://github.com/auronsan/testAllowance.git
+cd testAllowance
 ```
 4) npm install(to install requirement package)
 ```
